@@ -338,15 +338,17 @@ footer span { color: var(--gold); opacity: 0.6; }
 }
 .instruction-images {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
   margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 .instruction-img {
-  max-width: 260px;
-  width: 100%;
-  border-radius: 16px;
+  width: 48%;
+  max-width: 200px;
+  border-radius: 12px;
   border: 1px solid rgba(208,134,1,0.3);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
@@ -363,7 +365,6 @@ footer span { color: var(--gold); opacity: 0.6; }
   .price-card { min-width: 140px; padding: 20px 16px; }
   .trust-row { gap: 24px; }
   .stat-bar { gap: 24px; }
-  .instruction-img { max-width: 200px; }
   .instruction-text { font-size: 0.8rem; }
 }
 </style>
@@ -578,4 +579,4 @@ document.querySelectorAll('a.btn-gold').forEach(btn => {
 </script>
 </body>
   </html>
-                                                                                           
+        
