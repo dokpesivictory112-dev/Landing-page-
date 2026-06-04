@@ -29,6 +29,7 @@ fbq('track', 'PageView');
   --gold-dim: rgba(208,134,1,0.15);
   --white: #F8F4EE;
   --grey: #8A8A8A;
+  --instruction-red: #c62828;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -322,12 +323,48 @@ footer {
 }
 footer span { color: var(--gold); opacity: 0.6; }
 
+/* INSTRUCTION */
+.instruction-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #c62828;
+  text-align: center;
+  max-width: 400px;
+  margin-top: 14px;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+.instruction-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.instruction-img {
+  max-width: 260px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(208,134,1,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.step-label {
+  font-size: 0.75rem;
+  color: #c62828;
+  margin-top: 8px;
+  display: block;
+  font-weight: 600;
+}
 
 @media (max-width: 480px) {
   .price-compare { gap: 12px; }
   .price-card { min-width: 140px; padding: 20px 16px; }
   .trust-row { gap: 24px; }
   .stat-bar { gap: 24px; }
+  .instruction-img { max-width: 200px; }
+  .instruction-text { font-size: 0.8rem; }
 }
 </style>
 </head>
@@ -339,6 +376,20 @@ footer span { color: var(--gold); opacity: 0.6; }
   <h1>Stop Paying Double For<br><span>The Same Products</span></h1>
   <p>Some Nigerians are buying the exact same items you buy — for up to 40% less. Here's how they do it.</p>
   <a href="https://wa.me/2347044593466?text=I%20want%20to%20join%20the%20group" class="btn-gold">Join WhatsApp Group →</a>
+  <div class="instruction-text">
+    👆 If Join Chat takes you to Play Store: tap the three dots (⋮) at the top right then select "Open in WhatsApp" — see images below 👇
+  </div>
+  <div class="instruction-images">
+    <div>
+      <img src="group1.jpg" alt="Step 1: Tap the three dots" class="instruction-img">
+      <span class="step-label">Step 1 – Tap the three dots (⋮)</span>
+    </div>
+    <div>
+      <img src="group2.jpg" alt="Step 2: Select Open in WhatsApp" class="instruction-img">
+      <span class="step-label">Step 2 – Select "Open in WhatsApp"</span>
+    </div>
+  </div>
+  <div class="stat-bar">
     <div class="stat"><span class="stat-num">400+</span><span class="stat-label">Orders Fulfilled</span></div>
     <div class="stat"><span class="stat-num">40%</span><span class="stat-label">Average Savings</span></div>
     <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Factory Direct</span></div>
@@ -460,16 +511,19 @@ footer span { color: var(--gold); opacity: 0.6; }
   <div class="batch-note">⚡ Current batch is open — limited spots</div>
   <br><br>
   <a href="https://wa.me/2347044593466?text=I%20want%20to%20join%20the%20group" class="btn-gold">Join WhatsApp Group Now →</a>
+  <div class="instruction-text" style="margin-top:14px;">
+    👆 If Join Chat takes you to Play Store: tap the three dots (⋮) at the top right then select "Open in WhatsApp"
+  </div>
+</div>
 
 <footer>
-  &copy; 2024 <span>Fers Innova Ltd</span> · China to Nigeria, Factory Direct
+  &copy; 2026 <span>Fers Innova Ltd</span> · China to Nigeria, Factory Direct
 </footer>
 
 <script>
 const PIXEL_ID = '950535357880062';
 const CAPI_TOKEN = 'EAGDaJTh2MZCIBRpeQIpnyFa5AacQiODSrc6jgdepVI6SAUUgl7zkIW4ZBGmoZCmUzjsCO5ZAj2g7viEZAsrrRag2sXYirmQ5sYQWIRKjtF3W3BY3MbNKczeKAkgYM6M8GSTaYZAJ0hqpGURjlmfkVCB1QrkQAMVT0p8ajR3xurQ9Nmzjzz9ZCWBf75ZA4RkhNPfrjAZDZD';
 
-// Store fbclid from URL as fbc cookie for better attribution
 (function() {
   const fbclid = new URLSearchParams(window.location.search).get('fbclid');
   if (fbclid) {
@@ -511,10 +565,18 @@ function fireLeadEvent() {
   sendCAPI(eventId);
 }
 
+let leadFired = false;
+
 document.querySelectorAll('a.btn-gold').forEach(btn => {
-  btn.addEventListener('click', function() { fireLeadEvent(); });
+  btn.addEventListener('click', function() {
+    if (!leadFired) {
+      leadFired = true;
+      fireLeadEvent();
+    }
+  });
 });
 </script>
 </body>
-</html>
+                               </html>
+
 
